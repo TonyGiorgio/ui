@@ -29,6 +29,20 @@ procs:
       REACT_APP_FM_GATEWAY_API: 'http://127.0.0.1:8175'
       BROWSER: none
   fedimintd_1-logs:
-    shell: sleep 3 && docker logs -f ui-fedimintd_1-1
+    shell: sleep 2 && docker logs -f ui-fedimintd_1-1
+  gatewayd_1-logs:
+    shell: sleep 2 && docker logs -f ui-gatewayd_1-1
+  lnd_1-logs:
+    shell: sleep 2 && docker logs -f ui-lnd_1-1
   fedimintd_2-logs:
-    shell: sleep 3 && docker logs -f ui-fedimintd_2-1
+    shell: sleep 2 && docker logs -f ui-fedimintd_2-1
+  gatewayd_2-logs:
+    shell: sleep 2 && docker logs -f ui-gatewayd_2-1
+  bitcoind-logs:
+    shell: sleep 1 && docker logs -f ui-bitcoind-1
+  bitcoind-init:
+    shell: misc/scripts/init-bitcoind.sh
+    autostart: false
+  generate-blocks:
+    shell: misc/scripts/generate-blocks.sh
+    autostart: false
