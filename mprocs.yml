@@ -1,10 +1,10 @@
 procs:
-  start-servers:
+  start-docker:
     shell: docker compose up
-  stop-servers-clear-data:
+  stop-docker-clear-data:
     shell: docker compose down && echo 'Removing fm dirs' && sudo rm -rf fm_* && echo 'Done'
     autostart: false
-  stop-servers-retain-data:
+  stop-docker-retain-data:
     shell: docker compose down
     autostart: false
   guardian-ui-1:
@@ -42,7 +42,5 @@ procs:
     shell: sleep 1 && docker logs -f ui-bitcoind-1
   bitcoind-init:
     shell: misc/scripts/init-bitcoind.sh
-    autostart: false
   generate-blocks:
     shell: misc/scripts/generate-blocks.sh
-    autostart: false
