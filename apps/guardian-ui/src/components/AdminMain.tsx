@@ -4,10 +4,11 @@ import { ReactComponent as BitcoinIcon } from '../assets/svgs/bitcoin-white.svg'
 import { ReactComponent as EcashIcon } from '../assets/svgs/ecash.svg';
 import { ReactComponent as BankNotesIcon } from '../assets/svgs/banknotes.svg';
 import { ReactComponent as InfoIcon } from '../assets/svgs/info.svg';
+import { AuditSummary } from '../types';
 
 interface FederationBalanceProps {
   title: string;
-  amount: number;
+  amount: bigint;
   icon: React.ReactElement<
     React.SVGProps<SVGSVGElement> & {
       title?: string | undefined;
@@ -56,7 +57,7 @@ const FederationBalance: FC<FederationBalanceProps> = ({
             {title}
           </Text>
           <Text fontSize='xl' fontWeight='bold' color={theme.colors.gray[900]}>
-            {amount}
+            {amount.toString()}
           </Text>
         </Flex>
       </Flex>
@@ -69,7 +70,11 @@ const FederationBalance: FC<FederationBalanceProps> = ({
   );
 };
 
-export const AdminMain = () => {
+interface AdminMainProps {
+  auditSummary?: AuditSummary;
+}
+
+export const AdminMain: FC<AdminMainProps> = ({ auditSummary }) => {
   const theme = useTheme();
 
   return (
@@ -92,17 +97,12 @@ export const AdminMain = () => {
       >
         <FederationBalance
           title='Bitcoin'
-          amount={0}
+          amount={auditSummary?.net_assets ?? (0 as unknown as bigint)}
           icon={<BitcoinIcon color={theme.colors.white} />}
         />
         <FederationBalance
-          title='eCash'
-          amount={0}
-          icon={<EcashIcon color={theme.colors.blue[600]} />}
-        />
-        <FederationBalance
           title='Local currency (US Dollar)'
-          amount={0}
+          amount={0 as unknown as bigint}
           icon={<BankNotesIcon color={theme.colors.white} />}
         />
       </Flex>

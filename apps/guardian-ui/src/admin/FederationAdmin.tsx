@@ -19,6 +19,7 @@ import { CopyInput } from '@fedimint/ui';
 import { useTranslation } from '@fedimint/utils';
 import { useAdminContext } from '../hooks';
 import {
+  AuditSummary,
   ConfigResponse,
   Gateway,
   PeerStatus,
@@ -44,6 +45,7 @@ export const FederationAdmin: React.FC = () => {
   const [epochCount, setEpochCount] = useState<number>();
   const [status, setStatus] = useState<StatusResponse>();
   const [inviteCode, setInviteCode] = useState<string>('');
+  const [auditSummary, setAuditSummary] = useState<AuditSummary>();
   const [config, setConfig] = useState<ConfigResponse>();
   const [gateways, setGateways] = useState<Gateway[]>([]);
   const { t } = useTranslation();
@@ -51,9 +53,10 @@ export const FederationAdmin: React.FC = () => {
   useEffect(() => {
     api.version().then(setVersions).catch(console.error);
     api.fetchEpochCount().then(setEpochCount).catch(console.error);
-    // TODO: poll server status
+    // TODO: poll server status and audit
     api.status().then(setStatus).catch(console.error);
     api.inviteCode().then(setInviteCode).catch(console.error);
+    api.audit().then(setAuditSummary).catch(console.error);
   }, [api]);
 
   useEffect(() => {
@@ -169,7 +172,7 @@ export const FederationAdmin: React.FC = () => {
             </Box>
           </Box>
         </Flex>
-        <AdminMain />
+        <AdminMain auditSummary={auditSummary} />
         <Flex gap={4}>
           <Card flex='1'>
             <CardHeader>{t('federation-dashboard.fed-info.label')}</CardHeader>
