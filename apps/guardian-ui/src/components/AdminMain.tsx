@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Center, Flex, Text, useTheme } from '@chakra-ui/react';
 import { ReactComponent as BitcoinIcon } from '../assets/svgs/bitcoin-white.svg';
-import { ReactComponent as EcashIcon } from '../assets/svgs/ecash.svg';
 import { ReactComponent as BankNotesIcon } from '../assets/svgs/banknotes.svg';
 import { ReactComponent as InfoIcon } from '../assets/svgs/info.svg';
 import { AuditSummary } from '../types';

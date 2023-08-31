@@ -39,10 +39,31 @@ procs:
       REACT_APP_FM_GATEWAY_PASSWORD: 'theresnosecondbest'
       BROWSER: none
   fedimintd_1-logs:
-    shell: sleep 3 && docker logs -f ui-fedimintd_1-1
+    shell: sleep 5 && docker logs -f ui-fedimintd_1-1
   fedimintd_2-logs:
-    shell: sleep 3 && docker logs -f ui-fedimintd_2-1
+    shell: sleep 5 && docker logs -f ui-fedimintd_2-1
   fedimintd_3-logs:
-    shell: sleep 3 && docker logs -f ui-fedimintd_3-1
+    shell: sleep 5 && docker logs -f ui-fedimintd_3-1
   fedimintd_4-logs:
-    shell: sleep 3 && docker logs -f ui-fedimintd_4-1
+    shell: sleep 5 && docker logs -f ui-fedimintd_4-1
+  fedimintd_1-shell:
+    shell: docker exec -it ui-fedimintd_1-1 /bin/bash
+    autostart: false
+  fedimintd_2-shell:
+    shell: docker exec -it ui-fedimintd_2-1 /bin/bash
+    autostart: false
+  fedimintd_3-shell:
+    shell: docker exec -it ui-fedimintd_3-1 /bin/bash
+    autostart: false
+  fedimintd_4-shell:
+    shell: docker exec -it ui-fedimintd_4-1 /bin/bash
+    autostart: false
+  gatewayd-shell:
+    shell: docker exec -it ui-gatewayd_1-1 /bin/bash
+    autostart: false
+  lnd-shell:
+    shell: docker exec -it ui-lnd_1-1 /bin/bash
+    autostart: false
+  bitcoind-shell:
+    shell: docker exec -it ui-bitcoind-1 /bin/bash
+    autostart: false
